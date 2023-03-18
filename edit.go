@@ -284,7 +284,6 @@ func (w *Client) GetToken(tokenName string) (string, error) {
 		"action":   "query",
 		"meta":     "tokens",
 		"type":     tokenName,
-		"continue": "",
 	}
 
 	resp, err := w.Get(p)
