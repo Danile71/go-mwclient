@@ -293,7 +293,11 @@ func (w *Client) callJSON(p params.Values, post bool) (*jason.Object, error) {
 		defer body.Close()
 	}
 
-	js, err := jason.NewObjectFromReader(body)
+	return ExtractAPIErrors(body)
+}
+
+func ExtractAPIErrors(reader io.Reader) (*jason.Object, error) {
+	js, err := jason.NewObjectFromReader(reader)
 	if err != nil {
 		return nil, err
 	}
